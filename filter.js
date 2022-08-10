@@ -1,4 +1,4 @@
-  
+
 /**
  * To run this file in Gitpod, use the 
  * command node filter.js in the terminal
@@ -20,6 +20,12 @@ const people = [
     age: 18,
   },
 ];
+
+const oldEnough = people.filter(person => person.age >= 21);
+console.log(oldEnough);
+
+const paul = people.filter(p => p.name === "Paul")[0];
+console.log(paul);
 
 
 // Complex Filtering
@@ -55,3 +61,31 @@ const students = [
     ]
   },
 ];
+// // The filter callback function is defined inside the filter() method.
+// //......................................................................
+// const canidates = students.filter(student => {
+//   let strongSkills = student.skills.filter(skill => skill.yrsExperience >= 5);
+//   return strongSkills.length > 0;
+// });
+
+// // The filter callback function is defined outside, in a variable.
+// //.................................................................
+// const hasStrongSkills = student => {
+//   let strongSkills = student.skills.filter(skill => skill.yrsExperience >= 5);
+//   return strongSkills.length > 0;
+// };
+
+// const canidates = students.filter(hasStrongSkills);
+
+
+// Define the inner filter also outside.
+// Remove return statement & hasStrongSkills variable to get a single line of code
+//................................................................................
+const has5yearsExp = skill => skill.yrsExperience >= 5;
+const hasStrongSkills = student => student.skills.filter(has5yearsExp).length > 0;
+
+const canidates = students.filter(hasStrongSkills);
+
+console.log(canidates);
+const canidatesNames = canidates.map(canidate => canidate.name);
+console.log(canidatesNames);
